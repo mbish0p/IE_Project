@@ -1,0 +1,31 @@
+.registry--form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.registry--input,
+.MuiFormControl-root{
+  margin-bottom: 2.4rem;
+  width: 100%;
+  height: 100%;
+}
+
+.registry--input-container{
+  height: 6rem;
+  width: 55rem;
+}
+
+.registry--button{
+  margin-top: 2.4rem;
+}
+
+.registry--error{
+  color : rgb(255, 94, 94)
+}
+
+.registry--link,
+.registry--header{
+  text-align: center;
+}

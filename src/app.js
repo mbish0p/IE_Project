@@ -7,6 +7,7 @@ import "normalize.css/normalize.css";
 import "./styles/style.scss"
 import { addEvent, addReminder, deleteReminder } from './redux/actions/eventsAction'
 import { setTextFilter, sortByDayOfWeek, setStartDate, setEndDate, sortBySession } from './redux/actions/filtersActions'
+import getVisibleEvents from './selectors/events'
 
 const App = (
     <Provider store={store}>
@@ -19,40 +20,43 @@ const App = (
 
 store.dispatch(addEvent({
     id: 'sdfgsadhjkl',
-    title: 'melanz2',
-    authors: ['Mateusz Biskup']
+    title: 'Antropologia nowego świata',
+    authors: ['Indiana Jones'],
+    date: "2019-09-05T07:00:00.000Z",
+    session: "POSTER"
 }))
 
 store.dispatch(addEvent({
     id: 'sdfghjkl',
-    title: 'melanz',
-    authors: ['Mateusz Biskup']
+    title: 'Fizyka kwantowa',
+    authors: ['Mateusz Biskup'],
+    date: "2019-09-05T07:00:00.000Z",
+    session: "PLENARY"
+}))
+
+store.dispatch(addEvent({
+    id: 'sdfghjkl',
+    title: 'Polityka miedzynarodowa',
+    authors: ['Donald Trump'],
+    date: "2019-09-05T07:00:00.000Z",
+    session: "PLENARY"
 }))
 
 // store.dispatch(addReminder({ id: 'sdfgsadhjkl' }))
 // store.dispatch(deleteReminder({ id: 'sdfgsadhjkl' }))
-// store.dispatch(setTextFilter({ text: 'computer' }))
+//store.dispatch(setTextFilter({ text: 'Donald Trump' }))
 // store.dispatch(setTextFilter({ text: '' }))
-// store.dispatch(sortByDayOfWeek({ text: 'sunday' }))
+store.dispatch(sortByDayOfWeek({ text: 'Thursday' }))
 // store.dispatch(setStartDate({ timestamp: 170 }))
 // store.dispatch(setEndDate({ timestamp: 1200 }))
 // store.dispatch(setStartDate())
-// store.dispatch(sortBySession({ text: 'Plenner' }))
+store.dispatch(sortBySession({ text: 'Plenary' }))
 
-const getVisibleEvents = (events, { text, dayInWeek, sessionType, startDate, endDate }) => {
 
-    return events
-}
 
-store.subscribe(() => {
+const state = store.getState()
+const visibleEvents = getVisibleEvents(state.events, state.filters)
+console.log('1', visibleEvents)
 
-    const state = store.getState()
-    const visibleEvents = getVisibleEvents(state.events, state.filters)
-    console.log(visibleEvents)
-})
-
-const date = new Date("2019-09-05T07:00:00.000Z")
-const timestamp = date.getTime()
-console.log(timestamp)
 
 ReactDOM.render(App, document.getElementById("app"));

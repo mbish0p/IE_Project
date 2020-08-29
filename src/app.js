@@ -15,49 +15,22 @@ const App = (
     </Provider>
 );
 
-
-
-
-store.dispatch(addEvent({
-    id: 'sdfgsadhjkl',
-    title: 'Antropologia nowego świata',
-    authors: ['Indiana Jones'],
-    date: "2019-09-05T07:00:00.000Z",
-    session: "POSTER"
-}))
-
-store.dispatch(addEvent({
-    id: 'sdfghjkl',
-    title: 'Fizyka kwantowa',
-    authors: ['Mateusz Biskup'],
-    date: "2019-09-05T07:00:00.000Z",
-    session: "PLENARY"
-}))
-
-store.dispatch(addEvent({
-    id: 'sdfghjkl',
-    title: 'Polityka miedzynarodowa',
-    authors: ['Donald Trump'],
-    date: "2019-09-05T07:00:00.000Z",
-    session: "PLENARY"
-}))
-
 // store.dispatch(addReminder({ id: 'sdfgsadhjkl' }))
 // store.dispatch(deleteReminder({ id: 'sdfgsadhjkl' }))
 //store.dispatch(setTextFilter({ text: 'Donald Trump' }))
 // store.dispatch(setTextFilter({ text: '' }))
-store.dispatch(sortByDayOfWeek({ text: 'Thursday' }))
+//store.dispatch(sortByDayOfWeek({ text: 'Thursday' }))
 // store.dispatch(setStartDate({ timestamp: 170 }))
 // store.dispatch(setEndDate({ timestamp: 1200 }))
 // store.dispatch(setStartDate())
-store.dispatch(sortBySession({ text: 'Plenary' }))
+//store.dispatch(sortBySession({ text: 'Plenary' }))
 
 store.subscribe(() => {
 
     const state = store.getState()
-    console.log(state)
+    // console.log(state)
     const visibleEvents = getVisibleEvents(state.events, state.filters)
-    console.log('1', visibleEvents)
+    //console.log('1', visibleEvents)
 })
 
 

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import axios from 'axios'
 import MainSearch from './MainSearch'
 import SimpleTabs from './WeekTabs'
+import Events from './Events'
 
 class Main extends React.Component {
     constructor(props) {
@@ -15,8 +16,11 @@ class Main extends React.Component {
         axios({
             method: 'GET',
             url: "https://ie2020.kisim.eu.org/api//presentations"
-        }).then((res) => {
-            console.log(res);
+        }).then((response) => {
+            const events = response.data
+            events.forEach(({ id, title, authors, session, date, filename, keywords, reminder }) => {
+                this.props.addEvent(id, title, authors, session, date, filename, keywords)
+            })
         })
             .catch((error) => {
                 console.log(error);
@@ -37,6 +41,7 @@ class Main extends React.Component {
                 </div>
                 <MainSearch />
                 <SimpleTabs />
+                <Events />
             </div>
         );
     }
@@ -48,4 +53,22 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addEvent: (id, title, authors, session, date, filename, keywords, reminder) => dispatch({
+            type: 'ADD_EVENT',
+            event: {
+                id,
+                title,
+                authors,
+                session,
+                date,
+                filename,
+                keywords,
+                reminder
+            }
+        })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

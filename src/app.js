@@ -52,11 +52,14 @@ store.dispatch(sortByDayOfWeek({ text: 'Thursday' }))
 // store.dispatch(setStartDate())
 store.dispatch(sortBySession({ text: 'Plenary' }))
 
+store.subscribe(() => {
 
+    const state = store.getState()
+    console.log(state)
+    const visibleEvents = getVisibleEvents(state.events, state.filters)
+    console.log('1', visibleEvents)
+})
 
-const state = store.getState()
-const visibleEvents = getVisibleEvents(state.events, state.filters)
-console.log('1', visibleEvents)
 
 
 ReactDOM.render(App, document.getElementById("app"));

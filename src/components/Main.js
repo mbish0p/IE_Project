@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import axios from 'axios'
+import MainSearch from './MainSearch'
+import SimpleTabs from './WeekTabs'
 
 class Main extends React.Component {
     constructor(props) {
@@ -29,8 +31,12 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                <h1>Main email: {this.props.userInformation.email}</h1>
-                <button onClick={this.handleLogout}>Logout</button>
+                <div className='main--header'>
+                    <h1>Main email: {this.props.userInformation.email}</h1>
+                    <button onClick={this.handleLogout}>Logout</button>
+                </div>
+                <MainSearch />
+                <SimpleTabs />
             </div>
         );
     }

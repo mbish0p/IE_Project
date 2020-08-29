@@ -86,13 +86,13 @@ class Registry extends React.Component {
                     password: this.state.password,
                 },
             })
-                .then((res) => {
-                    console.log(res);
-                    localStorage.setItem("jwt", res.data.token);
+                .then((response) => {
+                    console.log(response);
+                    localStorage.setItem("jwt", response.data.token);
                     this.props.dispatch(
                         user({
-                            id: res.data.user.id,
-                            email: res.data.user.email
+                            id: response.data.user.id,
+                            email: response.data.user.email
                         })
                     );
                     this.props.history.push("/main");

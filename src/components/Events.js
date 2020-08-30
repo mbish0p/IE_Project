@@ -19,7 +19,12 @@ class Events extends React.Component {
                         const eventTimestamp = eventDate.getTime()
                         const hour = moment(eventTimestamp).format("HH:mm")
 
-                        return <Event key={index} hour={hour} title={event.title} />
+                        return <Event
+                            key={index}
+                            hour={hour}
+                            title={event.title}
+                            filename={event.filename}
+                            authors={event.authors} />
                     })
                 }
             </div>

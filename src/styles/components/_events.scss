@@ -1,7 +1,36 @@
 .event--container{
   display: flex;
+  padding: 2rem;
+  padding-left: 1rem;
+  border: solid 2px #6759e0;
 }
 
-.event--container p{
+.event--hour{
+  display: flex;
+  margin-left: 2.4rem;
+  width: 10%;
+  align-items: center;
+}
+
+.event--data{
+  margin-left: 2.4rem;
+  width: 60%;
+}
+
+.event--href{
+  text-decoration: none;
+}
+
+.event--authors{
+  margin-bottom: 0;
+}
+
+.event--button-container{
+  width: 25%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.event--reminder-button{
   margin-left: 2.4rem;
 }

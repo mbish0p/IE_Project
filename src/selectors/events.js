@@ -26,7 +26,7 @@ const getVisibleEvents = (events, { text, dayInWeek, sessionType, startDate, end
         const bDate = new Date(b.date)
         const bTimestamp = bDate.getTime()
 
-        return (aTimestamp <= bTimestamp) ? 1 : -1
+        return (aTimestamp <= bTimestamp) ? -1 : 1
     })
 }
 

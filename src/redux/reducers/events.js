@@ -116,23 +116,4 @@ const eventsReducer = (state = eventsReducerDefaultState, action) => {
     }
 }
 
-const demoState = {
-    events: [{
-        id: '123123123sdasdasd',
-        title: 'tralala',
-        authors: ['Puszkin', 'Twardogłowy'],
-        session: 'PLENARY',
-        date: '2019-09-05T07:00:00.000Z',
-        filename: 'agh/publikacja.pdf',
-        keywords: ['sdsd', 'sdasd', 'adasda'],
-        reminder: false // false or true
-    }],
-    filters: {
-        text: 'computer science',
-        dayInWeek: 'Monday', // monday, thursday, whensday ...
-        sessionType: 'Plenary',
-        hour: 1140
-    }
-}
-
 export default eventsReducer

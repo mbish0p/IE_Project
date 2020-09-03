@@ -28,7 +28,7 @@ const App = (
 store.subscribe(() => {
 
     const state = store.getState()
-    // console.log(state)
+    //console.log(state)
     const visibleEvents = getVisibleEvents(state.events, state.filters)
     //console.log('1', visibleEvents)
 })

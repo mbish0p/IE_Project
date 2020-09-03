@@ -44,7 +44,7 @@ class SimpleTabs extends React.Component {
         return (
             <div className='main--week-navigator'>
                 <AppBar position="static">
-                    <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
+                    <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example" variant="fullWidth">
                         <Tab label="Monday"  {... this.a11yProps(0)} />
                         <Tab label="Tuesday"  {... this.a11yProps(1)} />
                         <Tab label="Wednesday"  {... this.a11yProps(2)} />

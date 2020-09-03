@@ -51,10 +51,11 @@ class Login extends React.Component {
             axios({
                 method: "POST",
                 url: "https://ie2020.kisim.eu.org/api/auth",
-                data: {
+                auth: {
                     username: this.state.email,
                     password: this.state.password,
                 },
+
             })
                 .then((res) => {
                     console.log(res);

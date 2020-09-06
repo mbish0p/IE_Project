@@ -8,7 +8,6 @@ import { deleteReminder } from '../redux/actions/eventsAction';
 const Event = (props) => {
 
     const [buttonMode, setButtonMode] = useState(false)
-
     useEffect(() => {
         setButtonMode(props.reminder)
     }, [props.reminder])
@@ -74,7 +73,6 @@ const Event = (props) => {
 
 }
 
-
 const mapDipsatchToProps = (dispatch) => {
     return {
         addReminder: (eventId) => dispatch({
@@ -84,6 +82,7 @@ const mapDipsatchToProps = (dispatch) => {
             }
         }),
         deleteReminder: (eventId) => dispatch({
+            type: 'DELETE_REMINDER',
             payload: {
                 id: eventId
             }

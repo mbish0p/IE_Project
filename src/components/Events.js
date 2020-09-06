@@ -11,8 +11,9 @@ class Events extends React.Component {
         super(props)
 
         this.state = {
-            remindedEvents: []
+            remindedEvents: [],
         }
+        console.log(this.props)
     }
 
     componentDidMount() {
@@ -41,10 +42,33 @@ class Events extends React.Component {
     }
 
     render() {
+        const favEvents = []
+        this.props.events.map((event, index) => {
+            const isReminded = this.state.remindedEvents.find((reminder) => {
+                return reminder.presentationId === event.id
+
+            })
+            if (isReminded) {
+                favEvents.push(event)
+                // const eventDate = new Date(event.date)
+                // const eventTimestamp = eventDate.getTime()
+                // const hour = moment(eventTimestamp).format("HH:mm")
+                // return <Event
+                //     key={index}
+                //     id={event.id}
+                //     hour={hour}
+                //     title={event.title}
+                //     filename={event.filename}
+                //     authors={event.authors}
+                //     reminder={isReminded ? true : false}
+                //     reminderId={isReminded ? isReminded.id : undefined}
+                // />
+            }
+        })
         return (
             <div>
                 {
-                    getVisibleEvents(this.props.events, this.props.filters).map((event, index) => {
+                    getVisibleEvents(this.props.buttonMode ? favEvents : this.props.events, this.props.filters).map((event, index) => {
                         const eventDate = new Date(event.date)
                         const eventTimestamp = eventDate.getTime()
                         const hour = moment(eventTimestamp).format("HH:mm")

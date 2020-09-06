@@ -8,7 +8,6 @@ import Events from './Events'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
-import Chat from './KomunicateChat'
 
 class Main extends React.Component {
     constructor(props) {
@@ -17,7 +16,6 @@ class Main extends React.Component {
         this.state = {
             buttonMode: false
         }
-        console.log(this.props.userInformation);
     }
 
     componentDidMount() {
@@ -26,6 +24,7 @@ class Main extends React.Component {
             url: "https://ie2020.kisim.eu.org/api/presentations"
         }).then((response) => {
             const events = response.data
+            console.log(events)
             events.forEach(({ id, title, authors, session, date, filename, keywords, }) => {
                 this.props.addEvent(id, title, authors, session, date, filename, keywords)
             })
@@ -39,7 +38,6 @@ class Main extends React.Component {
         this.setState({
             buttonMode: !this.state.buttonMode
         })
-        console.log(this.state.buttonMode)
     }
 
     handleLogout = () => {
@@ -53,8 +51,12 @@ class Main extends React.Component {
                 <div className='main--header'>
                     <h1>Main email: {this.props.userInformation.email}</h1>
                     <div className='main--header-lefside'>
-                        <BottomNavigation className='main--header-lefside-fav' showLabels color={this.state.buttonMode ? "secondary" : 'default'}>
-                            <BottomNavigationAction onClick={this.changeButtonMode} label="Favorites" icon={<FavoriteIcon />} />
+                        <BottomNavigation className='main--header-lefside-fav ' showLabels>
+                            {
+                                this.state.buttonMode ?
+                                    <BottomNavigationAction className='button--mode-on' onClick={this.changeButtonMode} label="Favorites" icon={<FavoriteIcon />} /> :
+                                    <BottomNavigationAction className='button--mode-off' onClick={this.changeButtonMode} label="Favorites" icon={<FavoriteIcon />} />
+                            }
                         </BottomNavigation>
                         <button onClick={this.handleLogout}>Logout</button>
                     </div>
@@ -62,7 +64,7 @@ class Main extends React.Component {
                 </div>
                 <MainSearch />
                 <SimpleTabs />
-                <Events />
+                <Events buttonMode={this.state.buttonMode} />
             </div>
         );
     }
@@ -88,6 +90,12 @@ const mapDispatchToProps = (dispatch) => {
                 keywords,
                 reminder
             }
+        }),
+        dispalyReminders: () => dispatch({
+            type: 'DISPLAY_REMINDERS'
+        }),
+        hideReminders: () => dispatch({
+            type: 'HIDE_REMINDERS'
         })
     }
 }

@@ -2,14 +2,13 @@ import moment from 'moment'
 moment().format();
 
 
-const getVisibleEvents = (events, { text, dayInWeek, sessionType, startDate, endDate }) => {
+const getVisibleEvents = (events, { text, dayInWeek, sessionType, startDate, endDate, reminded }) => {
     return events.filter((event) => {
 
         const week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         const eventDate = new Date(event.date)
         const eventTimestamp = eventDate.getTime()
         const weekDay = week[moment(eventTimestamp).isoWeekday() - 1]
-
 
         const weekDayMatch = (weekDay === dayInWeek)
         const startDateMatch = typeof startDate !== 'number' || eventTimestamp >= startDate
@@ -18,7 +17,7 @@ const getVisibleEvents = (events, { text, dayInWeek, sessionType, startDate, end
         const textMatch = text === '' || event.title.toLowerCase().includes(text.toLowerCase()) ||
             event.authors.includes(text) || event.keywords.includes(text)
 
-        return weekDayMatch && startDateMatch && endDateMatch && textMatch && sessionMatch
+        return weekDayMatch && /*startDateMatch && endDateMatch && */ textMatch //&& sessionMatch
     }).sort((a, b) => {
         const aDate = new Date(a.date)
         const aTimestamp = aDate.getTime()

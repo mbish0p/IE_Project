@@ -32,3 +32,11 @@ export const sortBySession = ({ text }) => ({
         text
     }
 })
+
+export const dispalyReminders = () => ({
+    type: 'DISPLAY_REMINDERS'
+})
+
+export const hideReminders = () => ({
+    type: 'HIDE_REMINDERS'
+})

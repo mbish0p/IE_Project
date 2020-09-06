@@ -3,6 +3,7 @@ const filtersReducerDefaultState = {
     dayInWeek: 'Monday',
     sessionType: '',
     sortBy: 'date',
+    reminded: false,
     startDate: undefined,
     endDate: undefined
 }
@@ -49,6 +50,16 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
             return {
                 ...state,
                 sessionType: action.payload.text
+            }
+        case 'DISPLAY_REMINDERS':
+            return {
+                ...state,
+                dayInWeek: '',
+            }
+        case 'HIDE_REMINDERS':
+            return {
+                ...state,
+                dayInWeek: 'Monday',
             }
         default:
             return state
